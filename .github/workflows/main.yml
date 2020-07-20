@@ -51,9 +51,14 @@ jobs:
         path: .
         fetch-depth: 0
     
-    - name: execute miner
+    - name: execute topic_modeling
       run: python javadiff\topic_modeling.py ${{ matrix.ind }}
   
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.ind }}.zip
+        path: ${{ matrix.ind }}.zip
 
     - name: Upload results to release
       uses: svenstaro/upload-release-action@v1-release
